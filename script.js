@@ -18,3 +18,9 @@
 // Top level this: 'Undefined' - Window
 // HTML Linking: '<stript type="module">' - <script>
 // File downloading: Asynchronous - Synchronous
+
+// Modules are parsed in the top of the code, and hoisted, that means in the start of execution the engine read the entire module, and provide to us to use this piece of code.
+// Modules are imported synchronously that means only after all the imported modules the main index.js will finaly will be executed as well.
+
+// Possible thanks to top-level("static") imports, wich make imports known before executions;
+// This make building and elimination possible.
