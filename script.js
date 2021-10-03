@@ -77,3 +77,13 @@ shoppingCart2.addToCart('apple', 4)
 shoppingCart2.addToCart('pizza', 2)
 
 console.log(shoppingCart2.totalPrice)
+
+// Common JS -> Using in NODEjs
+// Export
+// export.addToCart = function(product, quantity) { // Work in NodeJs
+//     cart.push(product, quantity)
+//     console.log(`${quantity} ${product} added to cart! shipping cost is ${shoppingCost}`) // This variable cant be access outside the module, but we see the value if we return in a function.
+// }
+
+// Import
+// const  {addToCart} = require('./shoppingCart.js')
