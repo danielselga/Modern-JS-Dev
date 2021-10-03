@@ -24,3 +24,56 @@
 
 // Possible thanks to top-level("static") imports, wich make imports known before executions;
 // This make building and elimination possible.
+
+// Modules in practice.
+// Importing Module
+// For import an entire module and the variables we need to declare wich variables and from we are getting
+// import './shoppingCart.js'
+// import { addToCart, tq, totalPrice as Price } from './shoppingCart.js' // When we use curly braces we are especifying wich variables we are getting and from the entire module, and the module itself.
+console.log('Importing Module')
+// // addToCart('bread',20)
+// // console.log(tq, Price)
+
+// // Heare we are saving all values and adding to ShoppingCart Object, and we can call all the values an method or an value.
+// import * as ShoppingCart from './shoppingCart.js'
+// console.log(typeof ShoppingCart)
+// ShoppingCart.addToCart('bread', 5)
+// console.log(ShoppingCart.totalPrice)
+
+// When we import one value from export default we can give any name we want.
+
+// Eerty thing is in curly braces is named exports, and wich arent in curly we can pass any name we want beacuse this are export default values!
+import add, { cart } from './shoppingCart.js'
+add('pizza', 2)
+add('hamburger', 2)
+add('esfirra', 2)
+
+// Modules have a life conection the values will be iserted in the cart array and we can import heare in our code.
+console.log(cart)
+
+// The module pattern
+const shoppingCart2 = (function() {
+    const cart = []
+    const shoppingCost = 10
+    const totalPrice = 237
+    const totalQuantity = 33
+
+    const addToCart = function(product, quantity) {
+        cart.push(product, quantity)
+        console.log(`${quantity} ${product} added to cart! shipping cost is ${shoppingCost}`) // This variable cant be access outside the module, but we see the value if we return in a function.
+    }
+
+    const orderStock = function(product, quantity) {
+        cart.push(product, quantity)
+        console.log(`${quantity} ${product} ordered from supplyer!`)
+    }
+
+    return {
+        addToCart, totalPrice, cart, totalQuantity // Heare we are exporting an object with all of these methods that i retruned.
+    }
+})();
+
+shoppingCart2.addToCart('apple', 4)
+shoppingCart2.addToCart('pizza', 2)
+
+console.log(shoppingCart2.totalPrice)
