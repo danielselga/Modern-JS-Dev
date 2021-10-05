@@ -1,0 +1,29 @@
+{
+  "devDependencies": {
+    "parcel": "^2.0.0-rc.0",
+    "parcel-bundler": "^1.12.5"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
+  "name": "modern-js-dev",
+  "version": "1.0.0",
+  "main": "clean.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielselga/Modern-JS-Dev.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danielselga/Modern-JS-Dev/issues"
+  },
+  "homepage": "https://github.com/danielselga/Modern-JS-Dev#readme",
+  "description": ""
+}
