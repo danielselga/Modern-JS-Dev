@@ -7,7 +7,7 @@ export const cart = []
 
 // If we want to export a single value we can write "Export infront of the declaration to export this value to other code."
 // Export only work in top-level code.
-export const addToCart = function(product, quantity) {
+const addToCart = function(product, quantity) {
     cart.push(product, quantity)
     console.log(`${quantity} ${product} added to cart!`)
 }
@@ -15,7 +15,7 @@ export const addToCart = function(product, quantity) {
 const totalPrice = 237
 const totalQuantity = 23
 
-export {totalPrice, totalQuantity as tq}
+export {totalPrice, totalQuantity as tq, addToCart}
 
 // Default Exports 
 // We only use Default Exports when we want to export one thing per module.
@@ -23,5 +23,3 @@ export default function(product, quantity) {
     cart.push(product, quantity)
     console.log(`${quantity} ${product} added to cart!`)
 }
-
-

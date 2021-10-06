@@ -88,22 +88,6 @@ console.log(shoppingCart2.totalPrice)
 // Import
 // const  {addToCart} = require('./shoppingCart.js')
 
-// Imperative x Declarative Progamming.
-
-// Imperative -> Programmer explain "How to do things", we explain the computer every single step it has to follow to achive a result.
-// Exemple --> Step by Step reciep of cake
-const arr = [2, 4, 6, 8]
-const doubled = []
-for(let i = 0; i < arr.length; i++) {
-    doubled = arr[i] * 2
-}
-
-// Declarative -> Programmer tells "What to do", we simple describe the way the computer should achieve the result.
-// The HOW (Step by Step instructions) gets abstracted away.
-// Exemple -> Description of a cake.
-const arr2 = [2, 4, 6, 8]
-const doubled = arr.map(n => n * 2)
-
 import { cloneDeep } from 'lodash' // We can simple use loadash because parcel understand where to get files.
 // On dependancies in package.json we can see wich word we can use to import code from modules.
 
@@ -137,6 +121,33 @@ if(module.hot) { // Prevent browser refresh statement.
 }
 
 
+// Imperative x Declarative Progamming.
+
+// Imperative -> Programmer explain "How to do things", we explain the computer every single step it has to follow to achive a result.
+// Exemple --> Step by Step reciep of cake
+const arr = [2, 4, 6, 8]
+let doubled = []
+for(let i = 0; i < arr.length; i++) {
+    doubled = arr[i] * 2
+}
+
+// Declarative -> Programmer tells "What to do", we simple describe the way the computer should achieve the result.
+// The HOW (Step by Step instructions) gets abstracted away.
+// Exemple -> Description of a cake.
+const arr2 = [2, 4, 6, 8]
+const doubled2 = arr2.map(n => n * 2)
+
+// Functional Programming
+// Declarative programming paradigm, based on the ideia of writing software by combining many pure functions, avoiding side effects and mutating data. 
+
+// Side Effects vs Pure Functions
+// Side Effects -> Modification (mutation) of any data outside of the function (mutating external variables, loggin to console, writing to DOM, etc...)
+// Pure Functions -> Function without Side Effects. Does not depend on external variables. Given the same name inputs, always returns the same outputs.
+
+// Imutability: State (data) is never modified! instead, state is copied, and the copy is mutated and returned.
+
+
+
 // Refactoring bad code.
 
 const budget = [
@@ -150,10 +161,10 @@ const budget = [
     { value: -1800, description: 'New Laptop 💻', user: 'jonas' },
   ];
   
-  const spendingLimits = {
+  const spendingLimits = Object.freeze({
     jonas: 1500,
     matilda: 100,
-  };
+  });
   
   const addExpense = function (value, description, user) {
     if (!user) user = 'jonas';
@@ -204,6 +215,3 @@ const budget = [
     console.log(output);
   };
 
-//   bigExpenses(1000)
-console.log('fodase')
->>>>>>> 10581653810d20512d844df43772504ac8486fde
