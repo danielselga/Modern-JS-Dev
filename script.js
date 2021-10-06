@@ -103,3 +103,107 @@ for(let i = 0; i < arr.length; i++) {
 // Exemple -> Description of a cake.
 const arr2 = [2, 4, 6, 8]
 const doubled = arr.map(n => n * 2)
+
+import { cloneDeep } from 'lodash' // We can simple use loadash because parcel understand where to get files.
+// On dependancies in package.json we can see wich word we can use to import code from modules.
+
+const nestObj = {
+    teste: {
+        batatinha: 'frita 123',
+        numbers: [1,2,3,4,5,6],
+        obj: {
+            value1: true,
+            value2: false
+        },
+        obj2: {
+            obj3: {
+                obj4: {
+                    ola: 'meu nome é daniel'
+                }
+            }
+        }
+    }
+}
+
+const clonedObj = cloneDeep(nestObj)
+
+nestObj.teste.obj.value1 = false
+
+console.log(nestObj)
+console.log(clonedObj)
+
+if(module.hot) { // Prevent browser refresh statement.
+    module.hot.accept()
+}
+
+
+// Refactoring bad code.
+
+const budget = [
+    { value: 250, description: 'Sold old TV 📺', user: 'jonas' },
+    { value: -45, description: 'Groceries 🥑', user: 'jonas' },
+    { value: 3500, description: 'Monthly salary 👩‍💻', user: 'jonas' },
+    { value: 300, description: 'Freelancing 👩‍💻', user: 'jonas' },
+    { value: -1100, description: 'New iPhone 📱', user: 'jonas' },
+    { value: -20, description: 'Candy 🍭', user: 'matilda' },
+    { value: -125, description: 'Toys 🚂', user: 'matilda' },
+    { value: -1800, description: 'New Laptop 💻', user: 'jonas' },
+  ];
+  
+  const spendingLimits = {
+    jonas: 1500,
+    matilda: 100,
+  };
+  
+  const addExpense = function (value, description, user) {
+    if (!user) user = 'jonas';
+    user = user.toLowerCase();
+  
+    let lim;
+    if (spendingLimits[user]) {
+      lim = spendingLimits[user];
+    } else {
+      lim = 0;
+    }
+  
+    if (value <= lim) {
+      budget.push({ value: -value, description: description, user: user });
+    }
+  };
+  addExpense(10, 'Pizza 🍕');
+  addExpense(100, 'Going to movies 🍿', 'Matilda');
+  addExpense(200, 'Stuff', 'Jay');
+  console.log(budget);
+  
+  const check = function () {
+    for (const el of budget) {
+      let lim;
+      if (spendingLimits[el.user]) {
+        lim = spendingLimits[el.user];
+      } else {
+        lim = 0;
+      }
+  
+      if (el.value < -lim) {
+        el.flag = 'limit';
+      }
+    }
+  };
+  check();
+  
+  console.log(budget);
+  
+  const bigExpenses = function (limit) {
+    let output = '';
+    for (const el of budget) {
+      if (el.value <= -limit) {
+        output += el.description.slice(-2) + ' / '; // Emojis are 2 chars
+      }
+    }
+    output = output.slice(0, -2); // Remove last '/ '
+    console.log(output);
+  };
+
+//   bigExpenses(1000)
+console.log('fodase')
+>>>>>>> 10581653810d20512d844df43772504ac8486fde
