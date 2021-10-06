@@ -87,3 +87,19 @@ console.log(shoppingCart2.totalPrice)
 
 // Import
 // const  {addToCart} = require('./shoppingCart.js')
+
+// Imperative x Declarative Progamming.
+
+// Imperative -> Programmer explain "How to do things", we explain the computer every single step it has to follow to achive a result.
+// Exemple --> Step by Step reciep of cake
+const arr = [2, 4, 6, 8]
+const doubled = []
+for(let i = 0; i < arr.length; i++) {
+    doubled = arr[i] * 2
+}
+
+// Declarative -> Programmer tells "What to do", we simple describe the way the computer should achieve the result.
+// The HOW (Step by Step instructions) gets abstracted away.
+// Exemple -> Description of a cake.
+const arr2 = [2, 4, 6, 8]
+const doubled = arr.map(n => n * 2)
