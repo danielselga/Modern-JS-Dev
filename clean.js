@@ -19,41 +19,35 @@ const spendingLimits = Object.freeze({
 });
 
 
-const getLimit = user => spendingLimits?.[user] ?? 0
+const getLimit = (limits, user) => limits?.[user] ?? 0
 
-const addExpense = function (value, description, user) {
-  if (!user) user = 'jonas';
-  user = user.toLowerCase();
+const addExpense = function (state, limits, value, description, user = 'jonas') {
 
-  if (value <= getLimit(user)) {
-    budget.push({ value: -value, description, user });
-  }
+  const cleanUser = user.toLowerCase();
+
+  return value <= getLimit(limits, cleanUser) ? [...state, {value: -value, description, user: cleanUser} ] : state  
 };
-// addExpense(10, 'Pizza 🍕');
-// addExpense(100, 'Going to movies 🍿', 'Matilda');
-// addExpense(200, 'Stuff', 'Jay');
+
+const newBudget1 = addExpense(budget, spendingLimits, 10, 'Pizza 🍕');
+const newBudget2 = addExpense(newBudget1, spendingLimits, 100, 'Going to movies 🍿', 'Matilda');
+const newBudget3 = addExpense(newBudget2, spendingLimits, 200, 'Stuff', 'Jay');
+
+console.log(newBudget1)
+console.log(newBudget2)
+console.log(newBudget3)
 
 console.log(budget);
 
-const check = function () {
-  for (const entry of budget) {
-    if (entry.value < -getLimit(entry.user)) {
-      entry.flag = 'limit';
-    }
-  }
-};
+const checkExpenses = (state, limits) => state.map(entry => entry.value < -getLimit(limits, entry.user) ? {...entry, flag: 'limit'} : entry)
 
-check();
+const finalBudget = checkExpenses(newBudget3, spendingLimits);
+console.log(finalBudget)
 
 console.log(budget);
 
-const bigExpenses = function (limit) {
-  let output = '';
-  for (const el of budget) {
-    el.value <= -limit ? output += `${el.description.slice(-2)} / ` : ''
-  }
-  output = output.slice(0, -2); // Remove last '/ '
-  console.log(output);
-};
+const logbigExpenses = function (state, bigLimit) {
+  const bigExpenses = state.filter(entry => entry.value <= -bigLimit).map(entry => entry.description.slice(-2)).join(' / ')
+  console.log(bigExpenses)
+}
 
-bigExpenses(1000)
+logbigExpenses(finalBudget, 500)
